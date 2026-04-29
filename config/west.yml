@@ -13,7 +13,7 @@ manifest:
       import: app/west.yml
     - name: gggw-zmk-keebs
       remote: Good-Great-Grand-Wonderful
-      revision: zephyr-4.1
+      revision: b1049a0dcc91055691a1edc14c0649acda91cd09  # last known-good before Feb 12 breakage
       import: config/west.yml
   self:
     path: config
