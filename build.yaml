@@ -1,20 +1,15 @@
 ---
-# Crosses 42 — Custom build matrix for ProMicro NRF52840 MCUs
-# Overrides the template default (which targets Nice!Nano).
-#
-# Board: promicro_nrf52840 (generic Pro Micro-compatible NRF52840)
-# Shields: crosses_left / crosses_right (unchanged from template)
-
 include:
-  - board: promicro_nrf52840
+  - board: nice_nano
     shield: crosses_left
     artifact-name: crosses_42_left
 
-  - board: promicro_nrf52840
+  - board: nice_nano
     shield: crosses_right
     artifact-name: crosses_42_right
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
 
-  # Settings reset — wipes all paired BT devices (flash if you need to re-pair)
-  - board: promicro_nrf52840
+  - board: nice_nano
     shield: settings_reset
     artifact-name: crosses_42_settings_reset

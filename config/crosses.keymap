@@ -148,7 +148,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&lt SYM TRANS>, <&to SYM>;
+            bindings = <&mo SYM>, <&to SYM>;
         };
 
     }; // end behaviors
@@ -192,7 +192,7 @@
 AS(J)       AS(L)           AS(U)           AS(Y)           AS(EQUAL)       AS(MINUS)
 AS(M)       &hmr RSHFT N    &hmr RCTRL E    &hmr RALT I     &hmr RGUI O     AS(SQT)
 AS(K)       AS(H)           AS(COMMA)       AS(DOT)         AS(FSLH)        &td_rbrc
-&lt NAV TRANS               &mt LCTRL RETURN &kp LGUI
+&mo NAV                     &mt LCTRL RETURN &kp LGUI
             >;
         };
 
