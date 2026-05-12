@@ -6,6 +6,14 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: Good-Great-Grand-Wonderful
       url-base: https://github.com/Good-Great-Grand-Wonderful
+    - name: zzeneg
+      url-base: https://github.com/zzeneg
+    - name: srwi
+      url-base: https://github.com/srwi
+    - name: urob
+      url-base: https://github.com/urob
+    - name: dhruvinsh
+      url-base: https://github.com/dhruvinsh
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,5 +23,27 @@ manifest:
       remote: Good-Great-Grand-Wonderful
       revision: zephyr-4.1
       import: config/west.yml
+    # Raw HID transport — required by KeyPeek layer notifier.
+    # Enabling this alone does nothing; another module (below) must consume it.
+    - name: zmk-raw-hid
+      remote: zzeneg
+      revision: main
+    # KeyPeek live-overlay support — listens to ZMK layer-state changes and
+    # forwards them to the host via Raw HID. Replaces the old OverKeys
+    # F13-F17 macro toggling. Pair with the KeyPeek desktop app (srwi/keypeek).
+    - name: zmk-keypeek-layer-notifier
+      remote: srwi
+      revision: master
+    # Numword: auto-layer that stays active while typing numbers, auto-exits
+    # on any alpha. Used via &num_word in td_sym double-tap (replaces manual
+    # SYM lock/unlock).
+    - name: zmk-auto-layer
+      remote: urob
+      revision: main
+    # Tri-state: holds a modifier while a key is tapped repeatedly, releases
+    # on any other key. Used for one-handed Alt-Tab swapper on NAV layer.
+    - name: zmk-tri-state
+      remote: dhruvinsh
+      revision: main
   self:
     path: config
