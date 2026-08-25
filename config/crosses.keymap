@@ -40,7 +40,7 @@
 //   • Number-row shift partners 8→*, 9→(, 0→) at pos 20-22
 //
 // All Stage 7 mechanics retained:
-//   • sht (Space/Shift balanced, 200/175/150)
+//   • sht (Space/Shift balanced, 200/0/75)
 //   • Numword on td_sym double-tap, momentary on single-hold
 //   • Caps Word combo (pos 36+37), Bootloader combo (pos 0+11 on NAV)
 //   • Mouseless combos: D+V → ScrollLock (overlay), K+H → Pause (free)
@@ -144,15 +144,16 @@
         // Space/Shift: balanced flavor so rolling through Space into the
         // next letter produces Space (not Shift). Intentional Shift still
         // works: hold Space → press+release letter → release Space.
-        // require-prior-idle-ms prevents hold during fast typing bursts.
-        // quick-tap-ms lets double-tap Space always produce two spaces.
+        // A short require-prior-idle-ms still protects fast typing rolls while
+        // allowing Shift soon after another key. quick-tap-ms is disabled so
+        // a rapid Space → Shift reuse is not forced to resolve as Space.
         sht: space_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <75>;
             bindings = <&kp>, <&kp>;
         };
 

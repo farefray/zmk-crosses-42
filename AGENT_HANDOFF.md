@@ -199,10 +199,11 @@ hml / hmr (Home Row Mods):
 sht (Space/Shift — Stage 7):
   flavor                  balanced  (was hold-preferred via &mt)
   tapping-term-ms         200
-  quick-tap-ms            175
-  require-prior-idle-ms   150
-  NOTE: fixes rolling-through-Space misfire. If Space still triggers
-  Shift during fast typing, lower tapping-term-ms to 180.
+  quick-tap-ms            0        (disabled; allows rapid Space→Shift reuse)
+  require-prior-idle-ms   75       (reduced from 150 for faster Shift intent)
+  NOTE: retains balanced roll protection while removing the strongest forced-
+  tap windows. If rapid Shift still resolves as Space, test hold-preferred;
+  that favors Shift but can reintroduce rolling-through-Space misfires.
 
 ht (ESC/~ hold-tap):
   flavor                  tap-preferred
