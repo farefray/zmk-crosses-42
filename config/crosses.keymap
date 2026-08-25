@@ -366,19 +366,42 @@
             >;
         };
 
-        // ── L3 Mouse ─────────────────────────────────────────────────────────
-        // Trackballs always active (right=cursor, left=scroll) — this layer adds
-        // explicit mouse button and scroll-wheel bindings.
-        // EXIT (pos 0): &tog MOUSE — KeyPeek picks up the layer change.
-        // Unbound positions are &trans (fall through to BASE).
+        // ── L3 Mouse + Grid Jump ─────────────────────────────────────────────
+        // Trackballs always active (right=cursor, left=scroll). Right half of
+        // this layer = mouse buttons + scroll wheel (unchanged).
+        //
+        // LEFT half = Grid Jump (Stage 10): 18 alpha positions send unique
+        // F-keys that an AHK script on Windows catches and uses to teleport
+        // the mouse cursor to one of 18 zones on a 3840x2160 monitor.
+        //   Row 1 pos 0-5   → F13..F18          → top row of screen
+        //   Row 2 pos 12-17 → F19..F24          → middle row of screen
+        //   Row 3 pos 24-29 → LC(F13)..LC(F18)  → bottom row of screen
+        // (Ran out of unique F-keys after F24, so row 3 uses Ctrl+F13..F18 —
+        // AHK sees this as ^F13..^F18, which is what the script binds.)
+        //
+        // Activation: hold &mo MOUSE on pos 41 (right outer thumb, set on
+        // BASE) → tap a left-side key → release thumb → grab trackball for
+        // precise positioning. No script-side mode toggle required: the
+        // F-keys only fire while the layer is held.
+        //
+        // EXIT for toggle mode (when entered via &tog MOUSE on NAV pos 26):
+        // moved from pos 0 → pos 11 (right outer top), since pos 0 is now a
+        // grid key. Tap pos 11 to leave toggled MOUSE.
+        //
+        // AHK script: Wireless Crosses\grid_jump.ahk on Max's PC. Run it on
+        // login (place a shortcut in shell:startup, or start it via Task
+        // Scheduler at logon). If the script isn't running, grid keys just
+        // dead-fire F13..F24 — harmless, no other app binds them.
+        //
+        // Unbound positions remain &trans (fall through to BASE).
         mouse_layer {
             display-name = "Mouse";
             bindings = <
-    &tog MOUSE     &trans         &trans         &trans         &trans         &trans
-                                                                                       &trans         &trans         &trans         &trans         &trans         &trans
-    &trans         &trans         &trans         &trans         &trans         &trans
+    &kp F13        &kp F14        &kp F15        &kp F16        &kp F17        &kp F18
+                                                                                       &trans         &trans         &trans         &trans         &trans         &tog MOUSE
+    &kp F19        &kp F20        &kp F21        &kp F22        &kp F23        &kp F24
                                                                                        &mkp MB4       &mkp MB1       &mkp MB2       &mkp MB3       &mkp MB5       &trans
-    &trans         &trans         &trans         &trans         &trans         &trans
+    &kp LC(F13)    &kp LC(F14)    &kp LC(F15)    &kp LC(F16)    &kp LC(F17)    &kp LC(F18)
                                                                                        &trans         &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &trans
                                                  &trans         &mkp MB1       &mkp MB2
                                                                                        &mkp MB1       &mkp MB3       &trans
