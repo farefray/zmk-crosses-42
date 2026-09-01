@@ -1,6 +1,4 @@
 manifest:
-  defaults:
-    revision: main
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -8,12 +6,17 @@ manifest:
       url-base: https://github.com/Good-Great-Grand-Wonderful
     - name: zzeneg
       url-base: https://github.com/zzeneg
-    - name: srwi
-      url-base: https://github.com/srwi
     - name: urob
       url-base: https://github.com/urob
     - name: dhruvinsh
       url-base: https://github.com/dhruvinsh
+    # The Crosses shield imports these remotes. Re-declaring its moving
+    # projects below lets this top-level manifest pin the verified revisions;
+    # West gives top-level project definitions precedence over imported ones.
+    - name: efogdev
+      url-base: https://github.com/efogdev
+    - name: badjeff
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -21,29 +24,45 @@ manifest:
       import: app/west.yml
     - name: gggw-zmk-keebs
       remote: Good-Great-Grand-Wonderful
-      revision: zephyr-4.1
+      # Hardware-verified Crosses shield snapshot (2026-09-01).
+      revision: 33d2dca001704f170077b2d2eae8788e6992cdcf
       import: config/west.yml
-    # Raw HID transport — required by KeyPeek layer notifier.
-    # Enabling this alone does nothing; another module (below) must consume it.
+    # Moving projects imported by gggw-zmk-keebs, frozen at the revisions
+    # used by the verified Crosses workspace. Matching names here override
+    # the branch-based definitions in the imported manifest.
+    - name: zmk-pmw3610-driver-badjeff
+      remote: badjeff
+      repo-path: zmk-pmw3610-driver
+      revision: e970029b42f33613ca8f05baf311dc733cd5a390
+      path: modules/zmk-pmw3610-driver-badjeff
+    - name: zmk-pmw3610-driver-efog
+      remote: efogdev
+      repo-path: zmk-pmw3610-driver
+      revision: 38105b4f09d6d5b94ef5a3073428719e3c356af1
+      path: modules/zmk-pmw3610-driver-efog
+    - name: zmk-report-rate-limit
+      remote: efogdev
+      revision: 20e074280bc6e40206c6efb647d9f5ce5c3f8ecb
+    - name: zmk-input-processor-xyz
+      remote: badjeff
+      revision: 0f0574f6a6c5b08fa964dff7b957ce67b2e0a9cf
+    # Raw HID transport consumed by config/src/keypeek_notifier.c.
     - name: zmk-raw-hid
       remote: zzeneg
-      revision: main
-    # KeyPeek live-overlay support — listens to ZMK layer-state changes and
-    # forwards them to the host via Raw HID. Replaces the old OverKeys
-    # F13-F17 macro toggling. Pair with the KeyPeek desktop app (srwi/keypeek).
-    - name: zmk-keypeek-layer-notifier
-      remote: srwi
-      revision: master
+      revision: e25e325adc90fccb60cc08393b8c2b0ba6d647c7
+    # The customized KeyPeek notifier is maintained in config/src so clean
+    # builds reproduce its layer, key-position, and modifier packets without
+    # depending on an unpublished module checkout.
     # Numword: auto-layer that stays active while typing numbers, auto-exits
     # on any alpha. Used via &num_word in td_sym double-tap (replaces manual
     # SYM lock/unlock).
     - name: zmk-auto-layer
       remote: urob
-      revision: main
+      revision: 3a885d90eaff5679122f5d39935559d88e45b986
     # Tri-state: holds a modifier while a key is tapped repeatedly, releases
     # on any other key. Used for one-handed Alt-Tab swapper on NAV layer.
     - name: zmk-tri-state
       remote: dhruvinsh
-      revision: main
+      revision: ebbc1f0ccdb51669650bb0ac3e34920d09e62400
   self:
     path: config

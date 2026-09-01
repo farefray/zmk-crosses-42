@@ -9,3 +9,13 @@ config CROSSES_MOTION_GATED_TEMP_LAYER
       forwarding motion to ZMK's temporary-layer input processor.
 
 endif
+
+config CROSSES_KEYPEEK_NOTIFIER
+    bool "Crosses KeyPeek Raw HID notifier"
+    depends on RAW_HID
+    depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+    default y
+    help
+      Send active layers, physical key positions, and explicit modifier state
+      to KeyPeek over the Raw HID transport. This is the locally maintained
+      Crosses variant of srwi/zmk-keypeek-layer-notifier.

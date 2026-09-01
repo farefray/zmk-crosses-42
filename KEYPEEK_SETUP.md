@@ -6,10 +6,11 @@ keyboard's active layer in real time. It replaces OverKeys (see the
 
 The pieces:
 
-1. **Firmware modules** (already wired into this repo)
+1. **Firmware integration** (already wired into this repo)
    - `zzeneg/zmk-raw-hid` — adds a Raw HID interface to the device.
-   - `srwi/zmk-keypeek-layer-notifier` — listens to ZMK layer-state
-     events and forwards them into Raw HID.
+   - `config/src/keypeek_notifier.c` — the reproducible Crosses variant of
+     `srwi/zmk-keypeek-layer-notifier`; forwards layer, key-position, and
+     explicit-modifier events into Raw HID.
    - The `raw_hid_adapter` shield is appended to both halves in
      `build.yaml`. `CONFIG_RAW_HID=y` is set in `crosses.conf`.
 2. **ZMK Studio** is already enabled (right half, via the

@@ -214,7 +214,7 @@ For each experiment:
 | UX-007 | Implement approved KeyPeek metrics | Pending | UX-006 approved |
 | UX-008 | Collect representative usage baseline | Pending | UX-007; at least seven days |
 | UX-009 | Run first single-workflow experiment | Done | Auto Mouse retained after daily-use feedback |
-| UX-010 | Pin firmware module revisions | Pending | Compatibility and build verification |
+| UX-010 | Pin firmware module revisions | Done | All fetched firmware modules pinned; customized KeyPeek notifier maintained locally; clean left/right builds passed 2026-09-01 |
 | UX-011 | Focused pointing UX audit | Done | `POINTING_UX_AUDIT.md`; lived feedback overrides discoverability assumption |
 | UX-012 | Select first no-hold click experiment | Approved | 1000 ms Auto Mouse; no Grid Jump; center-thumb Mouse 1 |
 | UX-013 | Implement and hardware-test pointing experiment | Done | Flashed by Max; Auto Mouse works well |
@@ -402,3 +402,22 @@ At the end of every session:
   change.
 - Next: checkpoint only the intended firmware sources, then choose one new
   experiment; do not bundle further firmware changes into this proven state.
+
+### 2026-09-01 — UX-010 reproducible firmware dependencies
+
+- Pinned the Crosses shield, both PMW3610 drivers, report-rate limiter,
+  input-processor helpers, Raw HID, Auto Layer, and Tri-State to the exact
+  revisions already present in the verified workspace. ZMK was already pinned.
+- Replaced the unpublished local KeyPeek module checkout with an attributed
+  local firmware extension that preserves the existing layer, key-position,
+  and explicit-modifier Raw HID packet protocol.
+- Validated the resolved West manifest and completed pristine builds for the
+  right/central and left/peripheral targets using the authoritative build
+  matrix. Right compiled with Studio; left deliberately did not.
+- Compiled right devicetree retains Mouse layer 3, 1000 ms timeout, 500 ms
+  prior-idle guard, six-count threshold, and 80 ms activation window. The left
+  build retains peripheral scrolling and keeps the central listener disabled.
+- No keymap behavior changed and no firmware flash is required for this
+  maintenance checkpoint.
+- Next: gather lived UX feedback; UX-006 privacy-spec design remains available
+  without enabling collection.

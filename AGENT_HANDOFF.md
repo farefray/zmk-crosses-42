@@ -52,7 +52,7 @@ In **this repo** (`F:\zmk-crosses-42\`):
 | `config/crosses.keymap` | Active six-layer keymap: Stage 9 punctuation, simplified Auto Mouse without Grid Jump, reduced Win/Alt-only HRMs, and the hardware-verified motion gate |
 | `config/crosses.conf` | Active conf (BLE tweaks + Studio + pointing + sleep) |
 | `config/crosses.keymap.bak` / `crosses.conf.bak` | Pre-Stage-1 user attempt (do not use, kept for diff) |
-| `config/west.yml` | Manifest. Pulls upstream zmk, `gggw-zmk-keebs` (zephyr-4.1), `zzeneg/zmk-raw-hid` (main), `srwi/zmk-keypeek-layer-notifier` (master), `urob/zmk-auto-layer` (main, Numword), `dhruvinsh/zmk-tri-state` (main, Alt-Tab swapper) |
+| `config/west.yml` | Reproducible manifest. ZMK, Crosses/pointing modules, Raw HID, Auto Layer, and Tri-State are pinned to verified commits. The customized KeyPeek notifier now lives in `config/src/keypeek_notifier.c`. |
 | `build.yaml` | CI build matrix (left, right, settings_reset) — both halves now include `raw_hid_adapter` shield |
 | `STAGE1_NOTES.md` / `STAGE2_NOTES.md` / `STAGE3_NOTES.md` / `STAGE4_5_NOTES.md` / `STAGE6_NOTES.md` / `STAGE7_NOTES.md` / `STAGE8_NOTES.md` / `STAGE9_NOTES.md` | Historical notes per stage — what changed, test checklist. Stage 10 currently has no matching notes file; use `KEYBOARD_UX_AUDIT.md` and the active keymap. |
 | `KEYPEEK_SETUP.md` | KeyPeek desktop install + ZMK module integration guide |
@@ -74,25 +74,28 @@ Outside the repo:
 WSL2 Ubuntu 24, fish shell, Zephyr SDK 0.16.9 at `/home/fare/zephyr-sdk-0.16.9`,
 ZMK source under `zmk/` in this repo (vendored via west).
 
-**Standard rebuild — both halves with Studio enabled and Raw HID for KeyPeek:**
+**Standard rebuild — authoritative `build.yaml` split roles:**
 
 ```fish
-for shield in crosses_left crosses_right
-    west build --pristine -s zmk/app -b nice_nano \
-        -- -DZMK_CONFIG=/mnt/f/zmk-crosses-42/config \
-           -DSHIELD="$shield raw_hid_adapter" \
-           -DSNIPPET=studio-rpc-usb-uart \
-           -DCONFIG_ZMK_STUDIO=y \
-           -DCONFIG_ZMK_STUDIO_LOCKING=n
-    cp build/zephyr/zmk.uf2 /mnt/f/zmk-crosses-42/$shield.uf2
-end
+west build --pristine -d build-left -s zmk/app -b nice_nano \
+    -- -DZMK_CONFIG=/mnt/f/zmk-crosses-42/config \
+       -DSHIELD="crosses_left raw_hid_adapter"
+cp build-left/zephyr/zmk.uf2 /mnt/f/zmk-crosses-42/crosses_left.uf2
+
+west build --pristine -d build-right -s zmk/app -b nice_nano \
+    -- -DZMK_CONFIG=/mnt/f/zmk-crosses-42/config \
+       -DSHIELD="crosses_right raw_hid_adapter" \
+       -DSNIPPET=studio-rpc-usb-uart \
+       -DCONFIG_ZMK_STUDIO=y \
+       -DCONFIG_ZMK_STUDIO_LOCKING=n
+cp build-right/zephyr/zmk.uf2 /mnt/f/zmk-crosses-42/crosses_right.uf2
 ```
 
 Output: `crosses_left.uf2`, `crosses_right.uf2` at the repo root.
 
-Note the `raw_hid_adapter` shield is now appended on both halves — this is
-what `zmk-keypeek-layer-notifier` writes layer events into. Without it,
-KeyPeek can't see the device.
+The `raw_hid_adapter` shield remains in both build targets, but Studio is
+central-only and therefore belongs only on the right build. The local Crosses
+notifier compiles only on the central and writes KeyPeek packets into Raw HID.
 
 **Settings_reset UF2 (for NVS wipes):**
 
