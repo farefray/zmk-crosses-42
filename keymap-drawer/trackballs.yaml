@@ -1,0 +1,7 @@
+default:
+  - {t: Left ball, h: Scroll, type: trackball}
+  - {t: Right ball, h: Pointer, type: trackball}
+
+Mouse:
+  - {t: Left ball, h: Scroll · 800 CPI, type: trackball}
+  - {t: Right ball, h: Pointer · 700 CPI, type: trackball}

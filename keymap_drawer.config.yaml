@@ -1,6 +1,8 @@
 draw_config:
   append_colon_to_layer_header: false
   draw_key_sides: true
+  dark_mode: auto
+  separate_combo_diagrams: false
 
   svg_extra_style: |
     svg.keymap {
@@ -8,7 +10,7 @@ draw_config:
       font-size: 10px;
       font-weight: bold;
     }
- 
+
     text.label {
       stroke: #dfdfde;
       stroke-width: 12;
@@ -28,6 +30,19 @@ draw_config:
 
     rect.held, rect.combo.held {
       fill: #ebdada;
+    }
+
+    rect.added {
+      fill: #2f7d46;
+      stroke: #205831;
+      stroke-width: 2;
+    }
+    text.added {
+      fill: white;
+      paint-order: stroke;
+      stroke: #205831;
+      stroke-width: 2px;
+      stroke-linejoin: round;
     }
 
     .trans.tap, .ghost.tap {
@@ -54,7 +69,7 @@ draw_config:
       translate: 8px 13px;
       font-size: 8px;
       opacity: 1.0;
-    } 
+    }
 
     .combo.text_with_symbol.tap {
       translate: -1px 1px;
@@ -64,10 +79,26 @@ draw_config:
       font-size: 8px;
       opacity: 1.0;
     }
-  glyph_tap_size: 22 
+
+    rect.trackball {
+      rx: 28px;
+      ry: 28px;
+      fill: #a63d40;
+      stroke: #74282b;
+      stroke-width: 2;
+    }
+    text.trackball {
+      fill: white;
+      paint-order: stroke;
+      stroke: #74282b;
+      stroke-width: 2px;
+      stroke-linejoin: round;
+    }
+  glyph_tap_size: 22
   glyph_hold_size: 16
   glyph_shifted_size: 16
   glyphs: {}
+
 parse_config:
   preprocess: true
   skip_binding_parsing: false
@@ -97,13 +128,26 @@ parse_config:
       hold: 5
     "&mkp LCLK":
       tap: $$mdi:mouse-left-click$$
-      hold: "left"
+      hold: left
     "&mkp MCLK":
       tap: $$mdi:mouse$$
-      hold: "middle"
+      hold: middle
     "&mkp RCLK":
       tap: $$mdi:mouse-right-click$$
-      hold: "right"
+      hold: right
+    "&td_sym": {tap: Sym, hold: hold, shifted: "2× Num"}
+    "&caps_word": "Caps Word"
+    "&swapper": "Alt-Tab"
+    "&bootloader": "Bootloader"
+    "&mkp MB1": "Mouse 1"
+    "&mkp MB2": "Mouse 2"
+    "&mkp MB3": "Mouse 3"
+    "&mkp MB4": "Mouse 4"
+    "&mkp MB5": "Mouse 5"
+    "&msc SCRL_UP": "Wheel ↑"
+    "&msc SCRL_DOWN": "Wheel ↓"
+    "&msc SCRL_LEFT": "Wheel ←"
+    "&msc SCRL_RIGHT": "Wheel →"
   sticky_label: $$mdi:gesture-tap-hold$$
   toggle_label: toggle
   tap_toggle_label: tap-toggle
@@ -113,14 +157,14 @@ parse_config:
   layer_legend_map: {}
   mark_alternate_layer_activators: true
   modifier_fn_map:
-    left_ctrl: Ctl
-    right_ctrl: Ctl
-    left_shift: $$mdi:apple-keyboard-shift$$
-    right_shift: $$mdi:apple-keyboard-shift$$
+    left_ctrl: Ctrl
+    right_ctrl: Ctrl
+    left_shift: Shift
+    right_shift: Shift
     left_alt: Alt
     right_alt: AltGr
-    left_gui: Gui
-    right_gui: Gui
+    left_gui: Win
+    right_gui: Win
     keycode_combiner: '{mods}+{key}'
     mod_combiner: '{mod_1}+{mod_2}'
     special_combinations: {}
@@ -165,10 +209,10 @@ parse_config:
     SEMICOLON: ;
     SEMI: ;
     COLON: ':'
-    SINGLE_QUOTE: ''''
-    SQT: ''''
-    APOSTROPHE: ''''
-    APOS: ''''
+    SINGLE_QUOTE: "'"
+    SQT: "'"
+    APOSTROPHE: "'"
+    APOS: "'"
     DOUBLE_QUOTES: '"'
     DQT: '"'
     COMMA: ','
@@ -195,16 +239,18 @@ parse_config:
     TAB: $$mdi:keyboard-tab$$
     SPACE: $$mdi:keyboard-space$$
     BSPC: $$mdi:backspace$$
-    LCTRL: $$mdi:apple-keyboard-control$$
-    LALT: $$mdi:apple-keyboard-option$$
-    LSHIFT: $$mdi:apple-keyboard-shift$$
-    LSHFT: $$mdi:apple-keyboard-shift$$
-    LCMD: $$mdi:apple-keyboard-command$$
-    RCTRL: $$mdi:apple-keyboard-control$$
-    RALT: $$mdi:apple-keyboard-option$$
-    RSHIFT: $$mdi:apple-keyboard-shift$$
-    RSHFT: $$mdi:apple-keyboard-shift$$
-    RCMD: $$mdi:apple-keyboard-command$$
+    LCTRL: Ctrl
+    LALT: Alt
+    LSHIFT: Shift
+    LSHFT: Shift
+    LGUI: Win
+    LCMD: Win
+    RCTRL: Ctrl
+    RALT: AltGr
+    RSHIFT: Shift
+    RSHFT: Shift
+    RGUI: Win
+    RCMD: Win
     UP: $$mdi:arrow-up-bold$$
     DOWN: $$mdi:arrow-down-bold$$
     LEFT: $$mdi:arrow-left-bold$$
@@ -213,6 +259,13 @@ parse_config:
     PG_DN: $$mdi:transfer-down$$
     BT_CLR: $$mdi:bluetooth-off$$
     BT_SEL: $$mdi:bluetooth-connect$$
+    PSCRN: Print Screen
+    SLCK: Scroll Lock
+    C_MUTE: Mute
+    C_PP: Play/Pause
+    C_VOL_UP: Volume +
+    C_VOL_DN: Volume -
+    PAUSE_BREAK: Pause
   zmk_combos: {}
   zmk_preamble: '#define KEYMAP_DRAWER'
   zmk_additional_includes: []

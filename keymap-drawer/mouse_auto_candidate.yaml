@@ -1,0 +1,56 @@
+layout:
+  zmk_keyboard: crosses
+  layout_name: gggw_crosses_42_layout
+layers:
+  Mouse Auto Candidate:
+    # Left top row: intentionally quiet in v1; reserve space for proven needs.
+    - {t: "", type: ghost}
+    - {t: "", type: ghost}
+    - {t: "", type: ghost}
+    - {t: "", type: ghost}
+    - {t: "", type: ghost}
+    - {t: "", type: ghost}
+    # Right top row: transparent plus explicit exit/manual-toggle release.
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: EXIT, h: Mouse}
+    # Left home row: conventional mouse buttons, including browser back/forward.
+    - {t: Mouse 4, h: back, type: added}
+    - {t: Mouse 1, h: primary, type: added}
+    - {t: Mouse 2, h: secondary, type: added}
+    - {t: Mouse 3, h: middle, type: added}
+    - {t: Mouse 5, h: forward, type: added}
+    - {t: "", type: ghost}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    # Left bottom row: discrete wheel actions while the right hand stays on ball.
+    - {t: "", type: ghost}
+    - {t: Wheel ↑, type: added}
+    - {t: Wheel ↓, type: added}
+    - {t: Wheel ←, type: added}
+    - {t: Wheel →, type: added}
+    - {t: "", type: ghost}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    # Left thumbs: frequency-optimized; primary click occupies Space position.
+    - {t: Mouse 2, h: secondary, type: added}
+    - {t: Mouse 1, h: primary, type: added}
+    - {t: Mouse 3, h: middle, type: added}
+    # Right thumbs: transparent; current Base Mouse hold remains a fallback.
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: Mouse, h: fallback}
+    # Drawing-only hardware keys.
+    - {t: Left ball, h: Scroll, type: trackball}
+    - {t: Right ball, h: Auto Mouse, type: trackball}

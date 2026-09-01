@@ -1,0 +1,95 @@
+# User-facing legends layered over the source-derived bindings.
+# The source YAML keeps literal HID/ZMK bindings; this file shows the result
+# Max is meant to recognize on Windows.
+layers:
+  Mouse:
+    - {t: "—", type: none}
+    - {t: "—", type: none}
+    - {t: "—", type: none}
+    - {t: "—", type: none}
+    - {t: "—", type: none}
+    - {t: "—", type: none}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: Mouse, h: toggle}
+    - Mouse 4
+    - Mouse 1
+    - Mouse 2
+    - Mouse 3
+    - Mouse 5
+    - {t: "—", type: none}
+    - Mouse 4
+    - Mouse 1
+    - Mouse 2
+    - Mouse 3
+    - Mouse 5
+    - {t: "▽", type: trans}
+    - {t: "—", type: none}
+    - Wheel ↑
+    - Wheel ↓
+    - Wheel ←
+    - Wheel →
+    - {t: "—", type: none}
+    - {t: "▽", type: trans}
+    - Wheel ↑
+    - Wheel ↓
+    - Wheel ←
+    - Wheel →
+    - {t: "▽", type: trans}
+    - Mouse 2
+    - Mouse 1
+    - Mouse 3
+    - Mouse 1
+    - Mouse 3
+    - {type: held}
+    - {t: Left ball, h: Scroll, type: trackball}
+    - {t: Right ball, h: Pointer, type: trackball}
+
+  UKR:
+    - {t: UKR, h: toggle}
+    - Й
+    - Ц
+    - У
+    - К
+    - Е
+    - Н
+    - Г
+    - Ш
+    - Щ
+    - З
+    - Backspace
+    - Х
+    - Ф
+    - І
+    - В
+    - А
+    - П
+    - Р
+    - О
+    - Л
+    - Д
+    - Ж
+    - Є
+    - {t: "▽", type: trans}
+    - Я
+    - Ч
+    - С
+    - М
+    - И
+    - Т
+    - Ь
+    - Б
+    - Ю
+    - "."
+    - Ї
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: Left ball, h: Scroll, type: trackball}
+    - {t: Right ball, h: Pointer, type: trackball}

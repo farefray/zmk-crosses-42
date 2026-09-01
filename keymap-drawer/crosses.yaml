@@ -1,128 +1,367 @@
-layout: {zmk_keyboard: crosses, layout_name: gggw_crosses_42_layout}
+layout:
+  zmk_keyboard: crosses
+  layout_name: gggw_crosses_42_layout
 layers:
   Base:
-  - ['$$mdi:keyboard-tab$$', Q, W, E, R, T, Y, U, I, O]
-  - [P, '$$mdi:backspace$$', '$$mdi:apple-keyboard-control$$', A, S, D, F, G, H, J]
-  - [K, L, ;, '''', '$$mdi:apple-keyboard-shift$$', Z, X, C, V, B]
-  - - N
-    - M
-    - ','
-    - .
-    - /
-    - $$mdi:keyboard-esc$$
-    - {t: LGUI, h: Mouse}
-    - Lower
-    - $$mdi:keyboard-space$$
-    - $$mdi:keyboard-return$$
-  - [Raise, '$$mdi:apple-keyboard-option$$']
-  Lower:
-  - ['$$mdi:keyboard-tab$$', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  - - '0'
-    - $$mdi:backspace$$
-    - $$mdi:bluetooth-off$$
-    - {h: '1', s: '$$mdi:bluetooth-connect$$'}
-    - {h: '2', s: '$$mdi:bluetooth-connect$$'}
-    - {h: '3', s: '$$mdi:bluetooth-connect$$'}
-    - {h: '4', s: '$$mdi:bluetooth-connect$$'}
-    - {h: '5', s: '$$mdi:bluetooth-connect$$'}
-    - $$mdi:arrow-left-bold$$
-    - $$mdi:arrow-down-bold$$
-  - - $$mdi:arrow-up-bold$$
-    - $$mdi:arrow-right-bold$$
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - $$mdi:apple-keyboard-shift$$
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: LGUI, h: Mouse}
-    - {type: held}
-    - $$mdi:keyboard-space$$
-    - $$mdi:keyboard-return$$
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - $$mdi:apple-keyboard-option$$
-  Raise:
-  - ['$$mdi:keyboard-tab$$', '!', '@', '#', $, '%', ^, '&', KP MULTIPLY, (]
-  - - )
-    - $$mdi:backspace$$
-    - $$mdi:apple-keyboard-control$$
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - '-'
-    - '='
-  - - '['
-    - ']'
-    - \
-    - '`'
-    - $$mdi:apple-keyboard-shift$$
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - _
-    - +
-    - '{'
-    - '}'
-    - '|'
-    - '~'
-    - {t: LGUI, h: Mouse}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - $$mdi:keyboard-space$$
-    - $$mdi:keyboard-return$$
-  - - {type: held}
-    - $$mdi:apple-keyboard-option$$
+  - t: $$mdi:keyboard-esc$$
+    h: '~'
+  - Q
+  - W
+  - F
+  - P
+  - B
+  - J
+  - L
+  - U
+  - Y
+  - '='
+  - '-'
+  - $$mdi:keyboard-tab$$
+  - t: A
+    h: Win
+  - t: R
+    h: Alt
+  - S
+  - T
+  - G
+  - M
+  - N
+  - E
+  - t: I
+    h: AltGr
+  - t: O
+    h: Win
+  - ''''
+  - Ctrl
+  - Z
+  - X
+  - C
+  - D
+  - V
+  - K
+  - H
+  - ','
+  - .
+  - /
+  - t: ;
+    s: ':'
+  - t: $$mdi:backspace$$
+    s: DEL
+  - t: $$mdi:keyboard-space$$
+    h: Shift
+  - t: Sym
+    h: hold
+    s: 2× Num
+  - Nav
+  - t: $$mdi:keyboard-return$$
+    h: Ctrl
+  - Mouse
+  - &id001
+    t: Left ball
+    h: Scroll
+    type: trackball
+  - &id002
+    t: Right ball
+    h: Pointer
+    type: trackball
+  Sym:
+  - '`'
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - $$mdi:backspace$$
+  - '~'
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - (
+  - )
+  - '"'
+  - _
+  - '['
+  - ']'
+  - '{'
+  - '}'
+  - \
+  - '>'
+  - '='
+  - <
+  - .
+  - '?'
+  - ':'
+  - t: $$mdi:transfer$$
+    type: trans
+  - t: $$mdi:transfer$$
+    type: trans
+  - t: Base
+    h: toggle
+  - t: $$mdi:transfer$$
+    type: trans
+  - t: $$mdi:transfer$$
+    type: trans
+  - t: $$mdi:transfer$$
+    type: trans
+  - *id001
+  - *id002
+  Nav:
+  - F12
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - F11
+  - Caps Word
+  - Ctrl+Z
+  - Ctrl+X
+  - Ctrl+C
+  - Ctrl+V
+  - Alt-Tab
+  - $$mdi:transfer-up$$
+  - HOME
+  - $$mdi:arrow-up-bold$$
+  - END
+  - INS
+  - Print Screen
+  - t: UKR
+    h: toggle
+  - t: Game
+    h: toggle
+  - t: Mouse
+    h: toggle
+  - Ctrl+F
+  - Ctrl+S
+  - Ctrl+Y
+  - $$mdi:transfer-down$$
+  - $$mdi:arrow-left-bold$$
+  - $$mdi:arrow-down-bold$$
+  - $$mdi:arrow-right-bold$$
+  - Mute
+  - Play/Pause
+  - Mouse 1
+  - Mouse 2
+  - Mouse 3
+  - type: held
+  - Volume +
+  - Volume -
+  - *id001
+  - *id002
   Mouse:
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - '&studio_unlock'
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:mouse-right-click$$', h: right}
-    - {t: '$$mdi:mouse$$', h: middle}
-    - {t: '$$mdi:mouse-left-click$$', h: left}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {type: held}
-    - {type: held alternate}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-  - - {type: held alternate}
-    - {t: '$$mdi:transfer$$', type: trans}
+  - t: —
+    type: none
+  - t: —
+    type: none
+  - t: —
+    type: none
+  - t: —
+    type: none
+  - t: —
+    type: none
+  - t: —
+    type: none
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: Mouse
+    h: toggle
+  - Mouse 4
+  - Mouse 1
+  - Mouse 2
+  - Mouse 3
+  - Mouse 5
+  - t: —
+    type: none
+  - Mouse 4
+  - Mouse 1
+  - Mouse 2
+  - Mouse 3
+  - Mouse 5
+  - t: ▽
+    type: trans
+  - t: —
+    type: none
+  - Wheel ↑
+  - Wheel ↓
+  - Wheel ←
+  - Wheel →
+  - t: —
+    type: none
+  - t: ▽
+    type: trans
+  - Wheel ↑
+  - Wheel ↓
+  - Wheel ←
+  - Wheel →
+  - t: ▽
+    type: trans
+  - Mouse 2
+  - Mouse 1
+  - Mouse 3
+  - Mouse 1
+  - Mouse 3
+  - type: held
+  - t: Left ball
+    h: Scroll · 800 CPI
+    type: trackball
+  - t: Right ball
+    h: Pointer · 700 CPI
+    type: trackball
+  UKR:
+  - t: UKR
+    h: toggle
+  - Й
+  - Ц
+  - У
+  - К
+  - Е
+  - Н
+  - Г
+  - Ш
+  - Щ
+  - З
+  - Backspace
+  - Х
+  - Ф
+  - І
+  - В
+  - А
+  - П
+  - Р
+  - О
+  - Л
+  - Д
+  - Ж
+  - Є
+  - t: ▽
+    type: trans
+  - Я
+  - Ч
+  - С
+  - М
+  - И
+  - Т
+  - Ь
+  - Б
+  - Ю
+  - .
+  - Ї
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - t: ▽
+    type: trans
+  - *id001
+  - *id002
+  Game:
+  - $$mdi:keyboard-esc$$
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - t: Game
+    h: toggle
+  - $$mdi:keyboard-tab$$
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - t: $$mdi:minus-circle-outline$$
+    type: none
+  - Shift
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - ;
+  - t: Game
+    h: toggle
+  - Ctrl
+  - $$mdi:keyboard-space$$
+  - Alt
+  - t: $$mdi:minus-circle-outline$$
+    type: none
+  - t: Game
+    h: toggle
+  - t: $$mdi:minus-circle-outline$$
+    type: none
+  - *id001
+  - *id002
+combos:
+- p:
+  - 36
+  - 37
+  k: Caps Word
+  l:
+  - Base
+- p:
+  - 0
+  - 11
+  k: Bootloader
+  l:
+  - Nav
+- p:
+  - 28
+  - 29
+  k: Scroll Lock
+  l:
+  - Base
+- p:
+  - 30
+  - 31
+  k: Pause
+  l:
+  - Base
+- p:
+  - 14
+  - 29
+  k: Ctrl+V
+  l:
+  - Base

@@ -4,6 +4,10 @@
 Authoritative spec is `Wireless Crosses\PROJECT_HANDOFF.md` (in the
 project's mounted folder). This file is operational state.
 
+The durable multi-session keyboard usability roadmap is
+`KEYBOARD_UX_PLAN.md`. Read it before starting UX, layer-discoverability,
+KeyPeek coaching, telemetry, or keymap-simplification work.
+
 ---
 
 ## Where we are
@@ -21,6 +25,8 @@ and confirmed it works on the keyboard.
 | 7 | **Layer UX overhaul**: SPC/⇧ rolling fix, NAV clipboard+swapper+mouse+media, Numword, Caps Word combo, bootloader combo, BASE outer columns (LCTRL/BSLH replacing TD brackets), Mouseless combos (D+V/K+H), zmk-auto-layer + zmk-tri-state modules | yes | **pending** |
 | 8 | **Consistency pass**: BASE `'`↔`,;` swap (pos 23↔32), SYM realign (Getreuer-inspired brackets-on-left, column-aligned `;:?"\` with BASE), NAV pos 27/28/29 = Ctrl+F/S/Y, S+V combo for Ctrl+V, KeyPeek fork patched to single-glyph labels | yes | **pending** |
 | 9 | **Punctuation rework (audit A3+B1)**: drop mcs/mdc mod-morphs, BASE pos 23=`'`, pos 32=`,`, pos 33=`.`, pos 35=new mscl (`;:` mod-morph); SYM realigned (pos 23=`"`, pos 32=`<`, pos 33=`>`, pos 35=`:`); `\` relocated to SYM pos 29; UKR Ґ path now Shift+SYM+pos-29 | yes | **pending** |
+| 10 | **Mouse Grid Jump**: historical experiment using 18 F-key zones and a Windows AHK helper | no — superseded | not retained |
+| UX checkpoint | **Auto Mouse + reduced HRMs**: right-ball motion raises Mouse for 1000 ms; conventional left-side clicks/wheel keys; center-thumb Mouse 1; six-count/80 ms vibration gate; BASE HRMs only on Win/Alt | yes | **yes — confirmed 2026-09-01** |
 
 Auto-shift (`urob/zmk-auto-shift`) dropped from scope — too much interaction
 with existing hold behaviors. Not starting it.
@@ -43,12 +49,12 @@ In **this repo** (`F:\zmk-crosses-42\`):
 
 | Path | What it is |
 |---|---|
-| `config/crosses.keymap` | Active keymap (Stage 9 — punctuation rework, audit A3+B1) |
+| `config/crosses.keymap` | Active six-layer keymap: Stage 9 punctuation, simplified Auto Mouse without Grid Jump, reduced Win/Alt-only HRMs, and the hardware-verified motion gate |
 | `config/crosses.conf` | Active conf (BLE tweaks + Studio + pointing + sleep) |
 | `config/crosses.keymap.bak` / `crosses.conf.bak` | Pre-Stage-1 user attempt (do not use, kept for diff) |
 | `config/west.yml` | Manifest. Pulls upstream zmk, `gggw-zmk-keebs` (zephyr-4.1), `zzeneg/zmk-raw-hid` (main), `srwi/zmk-keypeek-layer-notifier` (master), `urob/zmk-auto-layer` (main, Numword), `dhruvinsh/zmk-tri-state` (main, Alt-Tab swapper) |
 | `build.yaml` | CI build matrix (left, right, settings_reset) — both halves now include `raw_hid_adapter` shield |
-| `STAGE1_NOTES.md` / `STAGE2_NOTES.md` / `STAGE3_NOTES.md` / `STAGE4_5_NOTES.md` / `STAGE6_NOTES.md` / `STAGE7_NOTES.md` / `STAGE8_NOTES.md` / `STAGE9_NOTES.md` | Historical notes per stage — what changed, test checklist |
+| `STAGE1_NOTES.md` / `STAGE2_NOTES.md` / `STAGE3_NOTES.md` / `STAGE4_5_NOTES.md` / `STAGE6_NOTES.md` / `STAGE7_NOTES.md` / `STAGE8_NOTES.md` / `STAGE9_NOTES.md` | Historical notes per stage — what changed, test checklist. Stage 10 currently has no matching notes file; use `KEYBOARD_UX_AUDIT.md` and the active keymap. |
 | `KEYPEEK_SETUP.md` | KeyPeek desktop install + ZMK module integration guide |
 | `.archive/OVERKEYS_SETUP.md` / `.archive/overkeys_config.json` | Old OverKeys setup, kept for fallback |
 | `gggw-zmk-keebs/boards/shields/crosses/` | Upstream shield (read-only reference) |
@@ -241,9 +247,10 @@ Remaining deferred items:
    AND the Stage 9 punctuation rework has settled.
    Update both `hml` and `hmr` together.
 
-2. **Auto-mouse-layer** — activate Mouse layer automatically on trackball motion
-   (ZMK `CONFIG_ZMK_POINTING_BEHAVIOR_AUTO_LAYER`). Revisit after daily-driving
-   the current manual mouse setup for a while.
+2. **Auto Mouse follow-up** — the current right-ball-triggered Mouse layer is
+   hardware-verified and works well. Do not redesign it speculatively; tune the
+   1000 ms timeout, 500 ms idle guard, or six-count/80 ms threshold only if
+   lived use identifies a specific failure.
 
 3. **More combos** — clipboard is now on NAV (Ctrl+Z/X/C/V), so the original
    combo proposal for those is resolved. Stage 8/9 deferred items:
