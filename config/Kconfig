@@ -1,0 +1,11 @@
+if ZMK_POINTING
+
+config CROSSES_MOTION_GATED_TEMP_LAYER
+    bool "Crosses motion-gated temporary layer processor"
+    depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+    default y
+    help
+      Require a configurable amount of relative pointer movement before
+      forwarding motion to ZMK's temporary-layer input processor.
+
+endif

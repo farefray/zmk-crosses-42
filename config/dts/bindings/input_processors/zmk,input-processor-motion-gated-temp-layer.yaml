@@ -1,0 +1,24 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Gate a temporary-layer processor behind a cumulative movement threshold
+
+compatible: "zmk,input-processor-motion-gated-temp-layer"
+
+include: ip_two_param.yaml
+
+properties:
+  processor:
+    type: phandle
+    required: true
+    description: Temporary-layer input processor to invoke after the threshold is crossed
+
+  activation-threshold:
+    type: int
+    required: true
+    description: Cumulative absolute X/Y counts required to activate the temporary layer
+
+  activation-window-ms:
+    type: int
+    required: true
+    description: Time window in which movement counts accumulate
