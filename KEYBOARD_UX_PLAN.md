@@ -210,9 +210,9 @@ For each experiment:
 | UX-003 | Generate accurate per-layer diagrams | Done | Six layer SVGs plus combined and combo views; local visual QA |
 | UX-004 | Replace stale README and add daily-use guide | Done | Approved 2026-08-28; documentation only |
 | UX-005 | Design compact KeyPeek layer coaching | Paused | Draft exists; Mouse content must follow the pointing redesign |
-| UX-006 | Write local aggregate-metrics privacy spec | Pending | UX-002; explicit Max approval |
-| UX-007 | Implement approved KeyPeek metrics | Pending | UX-006 approved |
-| UX-008 | Collect representative usage baseline | Pending | UX-007; at least seven days |
+| UX-006 | Write local aggregate-metrics privacy spec | Done | Approved and documented in KeyPeek 2026-09-01 |
+| UX-007 | Implement approved KeyPeek metrics | Done | Small opt-in local counter; no firmware change |
+| UX-008 | Collect representative usage baseline | In progress | Collection confirmed working 2026-09-01; review after at least seven days |
 | UX-009 | Run first single-workflow experiment | Done | Auto Mouse retained after daily-use feedback |
 | UX-010 | Pin firmware module revisions | Done | All fetched firmware modules pinned; customized KeyPeek notifier maintained locally; clean left/right builds passed 2026-09-01 |
 | UX-011 | Focused pointing UX audit | Done | `POINTING_UX_AUDIT.md`; lived feedback overrides discoverability assumption |
@@ -421,3 +421,21 @@ At the end of every session:
   maintenance checkpoint.
 - Next: gather lived UX feedback; UX-006 privacy-spec design remains available
   without enabling collection.
+
+### 2026-09-01 — UX-006/007 local aggregate metrics
+
+- Kept the implementation in the KeyPeek desktop fork; the existing Raw HID
+  position and layer packets required no firmware change or flash.
+- Added one opt-in aggregate store with physical-position counts by layer,
+  layer activations/transitions, and four hold-duration buckets. It stores no
+  characters, ordered event history, applications, window titles, or clipboard
+  data and has no network path.
+- Added a compact Settings section with current totals, export, reset, exact
+  data path, and a scrollable settings surface. Collection remains off by
+  default and covers only periods when KeyPeek is connected.
+- Validation: focused unit tests, full test suite, strict Clippy, release build,
+  and isolated visual QA of the settings surface.
+- Runtime confirmation: Max launched the installed release and confirmed that
+  local counters are actively collecting on 2026-09-01.
+- Next: gather at least seven representative days before drawing layout
+  conclusions (UX-008); no new firmware experiment is scheduled meanwhile.

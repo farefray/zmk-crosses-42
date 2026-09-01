@@ -18,6 +18,13 @@ The pieces:
    KeyPeek reads the live keymap and physical layout via Studio's RPC.
 3. **KeyPeek desktop app** — install separately, see below.
 
+The Crosses 42 fork also includes optional local aggregate usage metrics. They
+are disabled by default and configured from **KeyPeek Settings → Local Usage
+Metrics**. See the fork's `docs/LOCAL_USAGE_METRICS.md` for the exact stored
+fields and privacy boundary. This desktop-only feature does not require another
+firmware flash. The installed release was confirmed connected and collecting by
+Max on 2026-09-01.
+
 ## Install KeyPeek
 
 Grab the latest release for your platform from
