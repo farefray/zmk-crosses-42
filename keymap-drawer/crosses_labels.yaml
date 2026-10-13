@@ -15,11 +15,11 @@ layers:
     - {t: "▽", type: trans}
     - {t: "▽", type: trans}
     - {t: Mouse, h: toggle}
-    - Mouse 4
-    - Mouse 1
-    - Mouse 2
-    - Mouse 3
-    - Mouse 5
+    - {t: "▽", type: trans}
+    - Mouse Back
+    - Middle click
+    - Left click
+    - Right click
     - {t: "—", type: none}
     - Mouse 4
     - Mouse 1
@@ -39,9 +39,9 @@ layers:
     - Wheel ←
     - Wheel →
     - {t: "▽", type: trans}
-    - Mouse 2
-    - Mouse 1
-    - Mouse 3
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
+    - {t: "▽", type: trans}
     - Mouse 1
     - Mouse 3
     - {type: held}
