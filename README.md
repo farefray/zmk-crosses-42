@@ -17,8 +17,9 @@ Most work should fit into four actions:
    for a temporary NumWord run.
 3. Hold the right inner **Nav** thumb for editing, arrows, function keys,
    Alt-Tab, and media.
-4. Move the right ball to enter Auto Mouse, then use the left home row or
-   thumbs for clicks. The left ball scrolls on every layer.
+4. Move the right ball to enter Auto Mouse, then use A=Back, R=middle click,
+   S=left click or T=right click. Left thumbs retain Base functions.
+   The left ball scrolls on every layer.
 
 The two persistent special-purpose layers—**UKR** and **Game**—are entered from
 Nav and have explicit exit keys.
@@ -30,7 +31,7 @@ Nav and have explicit exit keys.
 | **Base** | Colemak-DH typing | Win/Alt home-row modifiers; plain S/T/N/E; `Backspace / Delete`; `Space / Shift`; three layer thumbs |
 | **Sym** | Numbers and punctuation | Hold Sym for a few symbols; double-tap Sym for NumWord; press the Base key shown on Sym to leave |
 | **Nav** | Editing and system navigation | Undo/Cut/Copy/Paste; arrows; Alt-Tab; Find/Save/Redo; volume |
-| **Mouse** | Automatic pointing controls | Move the right ball; center-left thumb is primary click; home row provides five buttons |
+| **Mouse** | Automatic pointing controls | Move right ball; A=Back, R=middle, S=left, T=right click; left thumbs unchanged |
 | **UKR** | Timing-free Ukrainian positions | Switch Windows to Ukrainian first; enter from Nav; use the top-left key to exit |
 | **Game** | Timing-free QWERTY | Enter from Nav; use any displayed `EXIT` key when finished |
 
@@ -62,9 +63,11 @@ Game.
 ![Mouse layer](keymap-drawer/crosses_mouse.svg)
 
 Move the right trackball and Mouse activates for about one second; continued
-motion refreshes it. The left home row provides Mouse 4/1/2/3/5, the bottom row
-provides wheel directions, and the left thumbs provide Mouse 2/1/3 with primary
-click in the center Space position. Grid Jump has been removed.
+motion refreshes it. On the left home row, A=Mouse Back, R=middle click,
+S=left click and T=right click; Tab passes through to Base. The bottom row
+provides wheel directions. All three left thumbs inherit Base actions
+(Backspace/Del, Space/Shift and Sym), and their presses dismiss auto-Mouse.
+Grid Jump remains removed.
 
 A six-count/80 ms motion gate plus a 500 ms prior-idle guard prevents ordinary
 keypress vibration from raising Mouse. Manual hold/toggle access remains
