@@ -120,7 +120,9 @@
         // motion still reaches the host during this guard; only the automatic
         // layer activation waits until the keyboard has been idle for 500 ms.
         require-prior-idle-ms = <500>;
-        excluded-positions = <12 13 14 15 16 25 26 27 28 36 37 38>;
+        // Only clicks and wheel actions keep auto-Mouse active on press.
+        // Left thumb presses dismiss the temporary layer for immediate editing.
+        excluded-positions = <13 14 15 16 25 26 27 28>;
     };
 
     auto_mouse_gate: auto_mouse_gate {
@@ -402,15 +404,14 @@
         // refreshes the timeout. A 500 ms prior-idle guard prevents typing
         // vibration or incidental ball brushes from raising Mouse.
         //
-        // Left home row: MB4 / MB1 / MB2 / MB3 / MB5.
+        // Left home row: Tab is transparent; A=Back (MB4), R=middle (MB3),
+        // S=left (MB1), T=right (MB2) click.
         // Left bottom row: discrete wheel up / down / left / right.
-        // Left thumbs: MB2 / MB1 / MB3, with primary click at the center
-        // Space position for the easiest click-drag hold.
+        // Left thumbs: transparent to Base, preserving Backspace/Del,
+        // Space/Shift, and Sym while dismissing auto-Mouse on press.
         //
-        // Grid Jump is intentionally removed. Quiet left positions use &none
-        // so they cannot leak Base characters while the temporary layer is
-        // visibly active in KeyPeek. Mouse actions are excluded from the
-        // processor's press-to-dismiss behavior.
+        // Grid Jump remains removed. Other quiet left positions use &none;
+        // click and wheel positions are excluded from press-to-dismiss.
         //
         // Manual fallback remains: Base pos 41 holds Mouse; Nav pos 26 toggles
         // Mouse; pos 11 exits the toggle. The existing right-side mouse actions
@@ -420,11 +421,11 @@
             bindings = <
     &none          &none          &none          &none          &none          &none
                                                                                        &trans         &trans         &trans         &trans         &trans         &tog MOUSE
-    &mkp MB4       &mkp MB1       &mkp MB2       &mkp MB3       &mkp MB5       &none
+    &trans         &mkp MB4       &mkp MB3       &mkp MB1       &mkp MB2       &none
                                                                                        &mkp MB4       &mkp MB1       &mkp MB2       &mkp MB3       &mkp MB5       &trans
     &none          &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &none
                                                                                        &trans         &msc SCRL_UP   &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &trans
-                                                 &mkp MB2       &mkp MB1       &mkp MB3
+                                                 &trans         &trans         &trans
                                                                                        &mkp MB1       &mkp MB3       &trans
             >;
         };
